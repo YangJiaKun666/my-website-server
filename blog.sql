@@ -1,0 +1,1 @@
+CREATE DATABASE `blog-db` CHARACTER SET 'utf8';

@@ -1,7 +1,7 @@
 # install ...
 
 ```
-npm i
+npm install
 ```
 
 # runing ...

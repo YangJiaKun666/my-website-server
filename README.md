@@ -39,6 +39,8 @@ my-blog-server  项目目录
 
     README.md  说明文档
 
+    .gitignore
+
 ```
 
 # 后台服务器返回的状态码

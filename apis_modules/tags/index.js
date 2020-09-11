@@ -8,8 +8,8 @@ const router = express.Router()
  */
 router.get('/getClassIfication', (req, res) => {
     let sql = 'SELECT * FROM classification'
-    pool.query(sql, [], function (err, sqlRes) {
-        if (err) return res.send({ code: 5000, msg: err.sqlMessage})
+    pool.query(sql, function (err, sqlRes) {
+        if (err) return res.send({ code: 5000, msg: err.sqlMessage })
         let selectRes = sqlRes
         res.send({ code: 1000, msg: 'success', data: selectRes || [] })
     })

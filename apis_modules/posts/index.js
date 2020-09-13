@@ -33,7 +33,7 @@ router.get('/getArticleByKeycode', (req, res) => {
     let pageSize = Number(req.query.pageSize) || 10 // 每页的数量
     let pageNum = (req.query.pageNum - 1 || 0) * pageSize // 页数索引
     let key = `classId like ${classId} and title like ${keyCode}` // 查询条件
-    let selectSql = `SELECT * FROM article WHERE ${key} LIMIT ${pageNum}, ${pageSize}` // 获取满足条件的数据
+    let selectSql = `SELECT * FROM article WHERE ${key} LIMIT ${pageNum}, ${pageSize};` // 获取满足条件的数据
     let totalSql = `SELECT sum(${key}) FROM article;` // 获取满足条件的总数
     pool.query(selectSql, function (selectSqlErr, selectSqlRes) {
         if (selectSqlErr)
@@ -54,29 +54,6 @@ router.get('/getArticleByKeycode', (req, res) => {
                 ...obj,
             })
         })
-    })
-})
-/**
- * 新增帖子
- * @param { title } 文章标题
- * @param { createTime } 文章创建时间
- * @param { content } 文章内容
- * @param { classId } 文章标签id
- * @param { className } 文章标签名称
- */
-router.post('/insertArticle', (req, res) => {
-    console.log('req', req.body)
-    let body = req.body
-    let id = Date.now() + '' + parseInt(Math.random() * 1000)
-    console.log(id)
-    let sql = `INSERT INTO article (id, title, create_time,class_id,class_name,decs) VALUES (${id}, ${body.title}, ${body.classId}, ${body.classId}, ${body.className}, ${body.content});`
-    pool.query(sql, function (err, sqlRes) {
-        if (err) return res.send({ code: 5000, msg: err.sqlMessage })
-        if (sqlRes) {
-            res.send({ code: 1000, msg: 'success' })
-        } else {
-            res.send({ code: 4004, msg: '添加失败' })
-        }
     })
 })
 module.exports = router

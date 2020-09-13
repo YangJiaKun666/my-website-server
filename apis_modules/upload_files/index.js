@@ -6,7 +6,7 @@ const router = express.Router()
 // 处理文件上传是保存文件的路径
 let storage = multer.diskStorage({
     destination: function (req, file, cd) {
-        cd(null, '@/public/images')
+        cd(null, 'public/images')
     },
     filename: function (req, file, cd) {
         cd(null, `${Date.now()}-${file.originalname}`)
@@ -17,7 +17,6 @@ let upload = multer({ storage })
  * 上传图片
  */
 router.post('/uploadImage', upload.array('file', 40), (req, res) => {
-    console.log('uploadFile', req.files)
     let files = req.files
     if (files[0]) {
         res.send({

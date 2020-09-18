@@ -7,9 +7,9 @@ const app = express()
 // 引入bodyparser 处理post请求的中间件
 const bodyParser = require('body-parser')
 // 处理跨域
-app.use(cors('127.0.0.1:3000'))
+app.use(cors('127.0.0.1:3001'))
 // 设置监听端口
-app.listen(3000)
+app.listen(3001)
 // 设置静态资源文件夹
 app.use('/public/images', express.static('./public/images'))
 // post请求时，转换数据
